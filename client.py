@@ -14,12 +14,12 @@ def hello():
 
 @app.route("/auth")
 def auth():
-    # scope = "profile"
-    # client_id = environ['OAUTH_CLIENT_ID']
-    # client_secret = environ['OAUTH_CLIENT_SECRET']
-    # flow = oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope)
-    # auth_url = flow.step1_get_authorize_url()
-    return redirect(location="https://google.com")
+    scope = "profile"
+    client_id = environ['OAUTH_CLIENT_ID']
+    client_secret = environ['OAUTH_CLIENT_SECRET']
+    flow = oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope)
+    auth_url = flow.step1_get_authorize_url()
+    return redirect(location=auth_url)
 
 
 @app.route("/profile")
