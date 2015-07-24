@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="bg-navy" lang="en">
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,11 +8,12 @@
     <title>{% block title %}{% endblock %} - Globus Auth Client Example</title>
     {% endblock %}
   </head>
-  <body>
+  <body class="bg-navy white">
     <div class="container">
       <div class="clearfix mxn2">
         <div class="sm-col-4 px2 mx-auto">
           <div class="p2">
+            <h1 class="aqua">{% block heading %}{% endblock %}</h1>
             {% block content %}{% endblock %}
           </div>
         </div>
