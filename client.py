@@ -12,5 +12,11 @@ def hello():
 def profile():
     return render_template("profile.html")
 
+
+@app.route("/oauth2callback")
+def oauth2callback()
+    print "yup"
+    return "Hello OAuth"
+
 if __name__ == "__main__":
     app.run()
