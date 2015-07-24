@@ -14,7 +14,7 @@ def profile():
 
 
 @app.route("/oauth2callback")
-def oauth2callback()
+def oauth2callback():
     print "yup"
     return "Hello OAuth"
 
