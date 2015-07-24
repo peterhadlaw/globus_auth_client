@@ -18,7 +18,7 @@ def auth():
     scope = "profile"
     client_id = environ['OAUTH_CLIENT_ID']
     client_secret = environ['OAUTH_CLIENT_SECRET']
-    redirect_uri = url_for("oauth2callback")
+    redirect_uri = url_for("oauth2callback", _external=True)
     flow = oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope,
                                             redirect_uri = redirect_uri)
     auth_url = flow.step1_get_authorize_url()
