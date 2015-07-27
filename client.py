@@ -16,7 +16,7 @@ def establishFlow():
     client_secret = environ['OAUTH_CLIENT_SECRET']
     redirect_uri = url_for("oauth2callback", _external=True)
 
-    flow = oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope,
+    return oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope,
                                             redirect_uri=redirect_uri)
 
 
