@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 def establishFlow():
-    scope = "profile"
+    scope = "email"
     client_id = environ['OAUTH_CLIENT_ID']
     client_secret = environ['OAUTH_CLIENT_SECRET']
     redirect_uri = url_for("oauth2callback", _external=True)
