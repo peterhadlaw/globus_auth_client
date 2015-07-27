@@ -12,11 +12,16 @@ app = Flask(__name__)
 def establishFlow():
     scope = "email"
     client_id = environ['OAUTH_CLIENT_ID']
-    client_secret = environ['OAUTH_CLIENT_SECRET']
+    auth_header = environ['OAUTHORIZATION_TOKEN']
     redirect_uri = url_for("profile", _external=True)
+    auth_uri = "https://auth.api.globusauthtest.globuscs.info/authorize"
+    token_uri = "https://auth.api.globusauthtest.globuscs.info/token"
 
-    return oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope,
-                                            redirect_uri=redirect_uri)
+    return oauth_client.OAuth2WebServerFlow(client_id,
+                                            authorization_header=auth_header,
+                                            redirect_uri=redirect_uri,
+                                            auth_uri=auth_uri,
+                                            token_uri=token_uri)
 
 
 @app.route("/")
