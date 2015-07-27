@@ -35,5 +35,4 @@ def profile():
 
 
 if __name__ == "__main__":
-    app.secret_key = environ['SESSION_SECRET']
     app.run()
