@@ -9,22 +9,18 @@ from oauth2client import client as oauth_client
 
 app = Flask(__name__)
 
+scope = "profile"
+client_id = environ['OAUTH_CLIENT_ID']
+client_secret = environ['OAUTH_CLIENT_SECRET']
+redirect_uri = url_for("oauth2callback", _external=True)
+
+app.flow = oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope,
+                                            redirect_uri = redirect_uri)
+app.auth_url = flow.step1_get_authorize_url()
 
 @app.route("/")
 def hello():
-    return render_template("hello.html")
-
-@app.route("/auth")
-def auth():
-    scope = "profile"
-    client_id = environ['OAUTH_CLIENT_ID']
-    client_secret = environ['OAUTH_CLIENT_SECRET']
-    redirect_uri = url_for("oauth2callback", _external=True)
-    flow = oauth_client.OAuth2WebServerFlow(client_id, client_secret, scope,
-                                            redirect_uri = redirect_uri)
-    auth_url = flow.step1_get_authorize_url()
-    return redirect(location=auth_url)
-
+    return render_template("hello.html", auth_url = app.auth_url)
 
 @app.route("/profile")
 def profile():
