@@ -22,7 +22,8 @@ def establishFlow():
 
 @app.route("/")
 def hello():
-    auth_url = establishFlow().step1_get_authorize_url()
+    # auth_url = establishFlow().step1_get_authorize_url()
+    auth_url = "https://google.com"
     return render_template("hello.html", auth_url=auth_url)
 
 
