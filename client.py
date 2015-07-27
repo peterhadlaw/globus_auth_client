@@ -1,8 +1,6 @@
 from os import environ
 from flask import Flask
 from flask import render_template
-from flask import redirect
-from flask import session
 from flask import request
 from flask import url_for
 from oauth2client import client as oauth_client
@@ -29,17 +27,12 @@ def hello():
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
-
-
-@app.route("/oauth2callback")
-def oauth2callback():
     if "error" in request.args:
         return "There was an authentication error: " + request.args.get("error")
     auth_code = request.args.get('code')
     result = establishFlow().step2_exchange(auth_code)
-    session['auth'] = result.id_token
-    return "Auth: " + session['auth']
+    return render_template("profile.html")
+
 
 if __name__ == "__main__":
     app.secret_key = environ['SESSION_SECRET']
