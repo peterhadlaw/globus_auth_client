@@ -41,4 +41,5 @@ def oauth2callback():
     return "Hello OAuth:" + str(result.id_token) + " SESSION " + session
 
 if __name__ == "__main__":
+    app.secret_key = environ['SESSION_SECRET']
     app.run()
