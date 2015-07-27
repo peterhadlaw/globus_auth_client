@@ -2,6 +2,7 @@ from os import environ
 from flask import Flask
 from flask import render_template
 from flask import redirect
+from flask import request
 from flask import url_for
 from oauth2client import client as oauth_client
 
@@ -32,8 +33,10 @@ def profile():
 
 @app.route("/oauth2callback")
 def oauth2callback():
-    print "yup"
-    return "Hello OAuth"
+    if "error" in request.args:
+        return "There was an authentication error"
+    auth_code = request.args.get('code')
+    return "Hello OAuth:" + auth_code
 
 if __name__ == "__main__":
     app.run()
