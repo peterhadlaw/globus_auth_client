@@ -37,7 +37,7 @@ def oauth2callback():
         return "There was an authentication error: " + request.args.get("error")
     auth_code = request.args.get('code')
     result = establishFlow().step2_exchange(auth_code)
-    return "Hello OAuth:" + result.get_access_token()
+    return "Hello OAuth:" + result.access_token
 
 if __name__ == "__main__":
     app.run()
