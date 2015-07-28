@@ -33,6 +33,8 @@ def hello():
 
 @app.route("/profile")
 def profile():
+    if "error" not in request.args and "code" not in request.args:
+        return "You must log in first"
     if "error" in request.args:
         return "There was an authentication error: " + request.args.get("error")
     auth_code = request.args.get('code')
