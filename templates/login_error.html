@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Error with Login{% endblock %}
+{% block heading %}Error with Login{% endblock %}
+{% block content %}
+<p class="red">
+  There was a problem with your log in attempt. Here is what went wrong:
+</p>
+<div class="p2 mb2 rounded bg-white red">
+<pre class="mb0">
+{{ login_error }}
+</pre>
+</div>
+
+<p class="italic gray">This is an example client application that authenticates a user via Globus Auth.</p>
+
+<div class="mt3">
+  <p>Try logging in again:</p>
+  <a class="btn fit btn-primary block center mb1 bg-lime navy" href="{{ auth_url }}"">Log in with Globus Auth</a>
+</div>
+{% endblock %}

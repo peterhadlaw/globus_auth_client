@@ -37,7 +37,8 @@ def profile():
         auth_url = establishFlow().step1_get_authorize_url()
         return render_template("need_login.html", auth_url=auth_url), 401
     if "error" in request.args:
-        return "There was an authentication error: " + request.args.get("error")
+        login_error = request.args.get("error")
+        return render_template("login_error.html", login_error=login_error), 401
     auth_code = request.args.get('code')
     result = establishFlow().step2_exchange(auth_code)
     return render_template("profile.html")
