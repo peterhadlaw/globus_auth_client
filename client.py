@@ -42,7 +42,11 @@ def profile():
         return render_template("need_login.html", auth_url=auth_url), 401
     if "error" in request.args:
         login_error = request.args.get("error")
-        return render_template("login_error.html", login_error=login_error), 401
+        login_error_desc = ""
+        if "error_description" in request.args:
+            login_error_desc = request.args.get("error_description")
+        return render_template("login_error.html", login_error=login_error,
+                               login_error_desc=login_error_desc), 401
     auth_code = request.args.get('code')
     result = establishFlow().step2_exchange(auth_code)
     return render_template("profile.html")
