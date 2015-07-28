@@ -8,6 +8,10 @@ from oauth2client import client as oauth_client
 
 app = Flask(__name__)
 
+app.config.update(dict(
+    PREFERRED_URL_SCHEME = "https"
+))
+
 
 def establishFlow():
     scope = environ['SCOPE_ID']
