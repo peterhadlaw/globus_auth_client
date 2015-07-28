@@ -17,7 +17,7 @@ def establishFlow():
     scope = environ['SCOPE_ID']
     client_id = environ['OAUTH_CLIENT_ID']
     auth_header = "Bearer: " + environ['OAUTHORIZATION_TOKEN']
-    redirect_uri = url_for("profile", _external=True)
+    redirect_uri = url_for("profile", _external=True, _scheme="https")
     auth_uri = "https://auth.api.globusauthtest.globuscs.info/authorize"
     token_uri = "https://auth.api.globusauthtest.globuscs.info/token"
 
