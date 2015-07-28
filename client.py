@@ -18,6 +18,7 @@ def establishFlow():
     token_uri = "https://auth.api.globusauthtest.globuscs.info/token"
 
     return oauth_client.OAuth2WebServerFlow(client_id,
+                                            scope=scope,
                                             authorization_header=auth_header,
                                             redirect_uri=redirect_uri,
                                             auth_uri=auth_uri,
