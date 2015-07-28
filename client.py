@@ -16,13 +16,15 @@ def establishFlow():
     redirect_uri = url_for("profile", _external=True)
     auth_uri = "https://auth.api.globusauthtest.globuscs.info/authorize"
     token_uri = "https://auth.api.globusauthtest.globuscs.info/token"
+    extra_params = {"access_type": None}
 
     return oauth_client.OAuth2WebServerFlow(client_id,
                                             scope=scope,
                                             authorization_header=auth_header,
                                             redirect_uri=redirect_uri,
                                             auth_uri=auth_uri,
-                                            token_uri=token_uri)
+                                            token_uri=token_uri,
+                                            extra_params)
 
 
 @app.route("/")
