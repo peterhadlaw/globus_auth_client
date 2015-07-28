@@ -34,7 +34,8 @@ def hello():
 @app.route("/profile")
 def profile():
     if "error" not in request.args and "code" not in request.args:
-        return render_template("need_login.html"), 401
+        auth_url = establishFlow().step1_get_authorize_url()
+        return render_template("need_login.html", auth_url=auth_url), 401
     if "error" in request.args:
         return "There was an authentication error: " + request.args.get("error")
     auth_code = request.args.get('code')
