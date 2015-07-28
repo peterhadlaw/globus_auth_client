@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 def establishFlow():
-    scope = "email"
+    scope = environ['SCOPE_ID']
     client_id = environ['OAUTH_CLIENT_ID']
     auth_header = "Bearer: " + environ['OAUTHORIZATION_TOKEN']
     redirect_uri = url_for("profile", _external=True)
