@@ -12,7 +12,7 @@ app = Flask(__name__)
 def establishFlow():
     scope = "email"
     client_id = environ['OAUTH_CLIENT_ID']
-    auth_header = environ['OAUTHORIZATION_TOKEN']
+    auth_header = "Bearer: " + environ['OAUTHORIZATION_TOKEN']
     redirect_uri = url_for("profile", _external=True)
     auth_uri = "https://auth.api.globusauthtest.globuscs.info/authorize"
     token_uri = "https://auth.api.globusauthtest.globuscs.info/token"
