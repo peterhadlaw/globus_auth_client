@@ -60,7 +60,8 @@ def profile():
     except oauth_client.Error as err:
         return render_template("login_error.html", login_error=str(err),
                                auth_url=auth_url), 401
-    return render_template("profile.html")
+    else:
+        return render_template("profile.html", profile_data=result.id_token)
 
 
 if __name__ == "__main__":
