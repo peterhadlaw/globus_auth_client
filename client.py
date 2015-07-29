@@ -50,7 +50,11 @@ def profile():
                                auth_url=auth_url), 401
     auth_code = request.args.get('code')
     h = Http(disable_ssl_certificate_validation=True)
-    result = flow.step2_exchange(auth_code, http=h)
+    try:
+        result = flow.step2_exchange(auth_code, http=h)
+    except oauth_client.Error as err:
+        return render_template("login_error.html", login_error=str(err),
+                               auth_url=auth_url), 401
     return render_template("profile.html")
 
 
