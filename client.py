@@ -37,14 +37,14 @@ def establishFlow():
 
 @app.route("/")
 def hello():
-    auth_url = establishFlow().step1_get_authorize_url(state=makeState())
+    auth_url = establishFlow().step1_get_authorize_url()
     return render_template("hello.html", auth_url=auth_url)
 
 
 @app.route("/profile")
 def profile():
     flow = establishFlow()
-    auth_url = flow.step1_get_authorize_url(state=makeState())
+    auth_url = flow.step1_get_authorize_url()
     if "error" not in request.args and "code" not in request.args:
         return render_template("need_login.html", auth_url=auth_url), 401
     if "error" in request.args:
