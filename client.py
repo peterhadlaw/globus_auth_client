@@ -4,14 +4,20 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from httplib2 import Http
+from base64 import urlsafe_b64encode as b64encode
+from random import SystemRandom
 from oauth2client import client as oauth_client
 
 
 app = Flask(__name__)
-
+random = SystemRandom()
 app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
+
+
+def makeState():
+    return b64encode(random.getrandbits(32))
 
 
 def establishFlow():
@@ -32,14 +38,14 @@ def establishFlow():
 
 @app.route("/")
 def hello():
-    auth_url = establishFlow().step1_get_authorize_url()
+    auth_url = establishFlow().step1_get_authorize_url(state=makeState())
     return render_template("hello.html", auth_url=auth_url)
 
 
 @app.route("/profile")
 def profile():
     flow = establishFlow()
-    auth_url = flow.step1_get_authorize_url()
+    auth_url = flow.step1_get_authorize_url(state=makeState())
     if "error" not in request.args and "code" not in request.args:
         return render_template("need_login.html", auth_url=auth_url), 401
     if "error" in request.args:
