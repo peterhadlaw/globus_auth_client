@@ -3,6 +3,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import url_for
+from httplib2 import Http
 from oauth2client import client as oauth_client
 
 
@@ -48,9 +49,10 @@ def profile():
                                login_error_desc=login_error_desc,
                                auth_url=auth_url), 401
     auth_code = request.args.get('code')
-    result = flow.step2_exchange(auth_code)
+    h = Http(disable_ssl_certificate_validation=True)
+    result = flow.step2_exchange(auth_code, http=h)
     return render_template("profile.html")
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
