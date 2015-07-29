@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Hello{% endblock %}
-{% block heading %}Research App{% endblock %}
+{% block title %}Home{% endblock %}
+{% block heading %}Globus Auth Demo of XSEDE Client App{% endblock %}
 {% block content %}
 <p>
-  Display your research profile by logging in with your Globus Auth account.
+  Display your Globus Auth account's XSEDE identity information by logging in using any identity linked to the same Globus Auth account as your XSEDE identity.
 </p>
-<p class="italic gray">This is an example client application that authenticates a user via Globus Auth.</p>
 
 <div class="mt3">
   <a class="btn fit btn-primary block center mb1 bg-lime navy" href="{{ auth_url }}"">Log in with Globus Auth</a>
