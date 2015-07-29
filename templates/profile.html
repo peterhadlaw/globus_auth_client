@@ -8,8 +8,10 @@
 <h2 class="aqua">Your info:</h2>
 <p class="italic gray">(Pulled from Globus Auth)</p>
 <div class="rounded bg-aqua navy p2">
-  <span class="bold">Name: </span>{{ profile_data.name }} <br />
-  <span class="class italic mt1">Issuer: </span>{{ profile_data.iss }} <br />
+  <ul class="list-reset">
+    <li><span class="bold">Name: </span>{{ profile_data.name }}</li>
+    <li class="italic mt3">Issuer: {{ profile_data.iss }}</li>
+  </ul>
   {{ profile_data }}
 </div>
 <div class="mt4">
