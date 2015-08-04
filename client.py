@@ -4,8 +4,6 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from httplib2 import Http
-from base64 import urlsafe_b64encode as b64encode
-from os import urandom
 from oauth2client import client as oauth_client
 
 
@@ -13,10 +11,6 @@ app = Flask(__name__)
 app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
-
-
-def makeState():
-    return b64encode(urandom(32))
 
 
 def establishFlow():
