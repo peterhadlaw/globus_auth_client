@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
+app.config['DEBUG'] = environ.get('DEBUG', False)
 
 
 def establishFlow():
@@ -59,4 +60,4 @@ def profile():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

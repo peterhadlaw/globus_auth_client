@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ "$FLASK_ENV" == "development" ]; then
+   python client.py
+else
+   gunicorn client:app -w 3
+fi

@@ -1,1 +1,1 @@
-web: python client.py
+web: bin/web
