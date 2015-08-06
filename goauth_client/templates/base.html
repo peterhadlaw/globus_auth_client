@@ -15,7 +15,9 @@
           <div class="p2">
             <h1 class="aqua">{% block heading %}{% endblock %}</h1>
             <p class="italic gray">This is an example XSEDE client application that authenticates a user via Globus Auth.</p>
-            {% block content %}{% endblock %}
+            <div id="page-content">
+              {% block content %}{% endblock %}
+            </div>
           </div>
         </div>
       </div>
