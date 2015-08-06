@@ -29,6 +29,10 @@ class GOAuthClientHelloTest(unittest.TestCase):
         soup = BeautifulSoup(rv.data, 'html.parser')
         assert soup.h1.string == "Globus Auth Demo of XSEDE Client App"
 
+    def test_page_has_contents(self):
+        rv = self.app.get('/')
+        soup = BeautifulSoup(rv.data, 'html.parser')
+        assert soup.find(id="page-content").text != ''
 
 if __name__ == '__main__':
     unittest.main()
