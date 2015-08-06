@@ -11,5 +11,9 @@ class GOAuthClientHelloTest(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_home_heading(self):
+        rv = self.app.get('/')
+        pass
+
 if __name__ == '__main__':
     unittest.main()
