@@ -24,6 +24,11 @@ class GOAuthClientHelloTest(unittest.TestCase):
         # Check that each individual page has it's respective title.
         assert soup.title.string.startswith('Home')
 
+    def test_page_headings(self):
+        rv = self.app.get('/')
+        soup = BeautifulSoup(rv.data, 'html.parser')
+        assert soup.h1.string == "Globus Auth Demo of XSEDE Client App"
+
 
 if __name__ == '__main__':
     unittest.main()
