@@ -25,5 +25,11 @@ class GOAuthClientAuthTest(unittest.TestCase):
             soup = BeautifulSoup(rv.data, 'html.parser')
             assert soup.find('a', class_="btn-primary")['href'] == auth_url
 
+    def test_auth_oauth_no_auth_provided(self):
+        # If no auth code or error provided, check for Login Required notice
+        rv = self.app.get('/profile')
+        soup = BeautifulSoup(rv.data, 'html.parser')
+        assert soup.h1.string == "Login Required"
+
 if __name__ == '__main__':
     unittest.main()
