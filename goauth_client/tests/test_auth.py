@@ -3,7 +3,10 @@ from __future__ import print_function
 from goauth_client import client
 import unittest
 from bs4 import BeautifulSoup
+from future.standard_library import install_aliases
+install_aliases()
 
+from urllib.parse import quote as urlquote
 
 
 class GOAuthClientAuthTest(unittest.TestCase):
@@ -30,6 +33,23 @@ class GOAuthClientAuthTest(unittest.TestCase):
         rv = self.app.get('/profile')
         soup = BeautifulSoup(rv.data, 'html.parser')
         assert soup.h1.string == "Login Required"
+
+    def test_auth_oauth_error(self):
+        # If there was an error from the oauth flow, display it
+        err = "Sample Error"
+        err_desc = "Sample Error Description"
+
+        # Just the error, no description
+        rv = self.app.get('/profile?error={}'.format(urlquote(err)))
+        soup = BeautifulSoup(rv.data, 'html.parser')
+        assert soup.find(id="login-error").string.strip() == err
+
+        # Both error and error description
+        rv = self.app.get('/profile?error={}&error_description={}'
+                          .format(urlquote(err), urlquote(err_desc)))
+        soup = BeautifulSoup(rv.data, 'html.parser')
+        assert soup.find(id="login-error").string.strip() == err
+        assert soup.find(id="login-error-description").string.strip() == err_desc
 
 if __name__ == '__main__':
     unittest.main()
