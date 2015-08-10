@@ -51,5 +51,9 @@ class GOAuthClientAuthTest(unittest.TestCase):
         assert soup.find(id="login-error").string.strip() == err
         assert soup.find(id="login-error-description").string.strip() == err_desc
 
+    def test_auth_oauth_success(self):
+        # Accept the auth code, process it, display user information
+        pass
+
 if __name__ == '__main__':
     unittest.main()
