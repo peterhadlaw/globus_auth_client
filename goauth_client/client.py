@@ -42,6 +42,14 @@ def profile():
     flow = establishFlow()
     auth_url = flow.step1_get_authorize_url()
     if "error" not in request.args and "code" not in request.args:
+        if request.args:
+            # Malformed response
+            login_error = "Malformed Response"
+            login_error_desc = "Please contact your login provider. We were unable to process their response."
+            return render_template("login_error.html", login_error=login_error,
+                                   login_error_desc=login_error_desc,
+                                   auth_url=auth_url), 400
+        # User went directly to /profile, prompt for login
         return render_template("need_login.html", auth_url=auth_url), 401
     if "error" in request.args:
         login_error = request.args.get("error")
