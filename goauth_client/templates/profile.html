@@ -9,12 +9,12 @@
 <p class="italic gray">(Pulled from the Signed Token provided by Globus Auth)</p>
 <div class="rounded bg-aqua navy p2">
   <ul class="list-reset mb0">
-    <li><span class="bold">Name: </span>{{ profile_data.name }}</li>
-    <li><span class="bold">Username: </span>{{ profile_data.username }}</li>
-    <li><span class="bold">Email: </span>{{ profile_data.email }}</li>
-    <li><span class="bold">Provider: </span>{{ profile_data.provider_name }}</li>
-    <li><span class="bold">Provider ID: </span>{{ profile_data.provider }}</li>
-    <li class="italic mt3">Issuer: {{ profile_data.iss }}</li>
+    <li id="info-name"><span class="bold">Name: </span>{{ profile_data.name }}</li>
+    <li id="info-username" ><span class="bold">Username: </span>{{ profile_data.username }}</li>
+    <li id="info-email"><span class="bold">Email: </span>{{ profile_data.email }}</li>
+    <li id="info-provider"><span class="bold">Provider: </span>{{ profile_data.provider_name }}</li>
+    <li id="info-provider_id"><span class="bold">Provider ID: </span>{{ profile_data.provider }}</li>
+    <li class="italic mt3" id="info-issuer">Issuer: {{ profile_data.iss }}</li>
   </ul>
 </div>
 {% endblock %}
