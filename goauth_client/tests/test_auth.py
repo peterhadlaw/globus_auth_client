@@ -68,6 +68,12 @@ class GOAuthClientAuthTest(unittest.TestCase):
         assert soup.find(id="login-error").string.strip() == err
         assert soup.find(id="login-error-description").string.strip() == err_desc
 
+    def test_auth_malformed_response(self):
+        rv = self.app.get('/profile?foo=bar')
+        soup = BeautifulSoup(rv.data, 'html.parser')
+        assert soup.find(id="login-error").string.strip() == "Malformed Response"
+        assert soup.find(id="login-error-description").string.strip() == "Please contact your login provider. We were unable to process their response."
+
     def test_auth_oauth_success(self):
         # Accept the auth code, process it, display user information
         with patch('goauth_client.client.establishFlow',
