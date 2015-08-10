@@ -2,11 +2,28 @@ from __future__ import print_function
 
 from goauth_client import client
 import unittest
+from mock import patch
+from mock import MagicMock
 from bs4 import BeautifulSoup
 from future.standard_library import install_aliases
 install_aliases()
 
 from urllib.parse import quote as urlquote
+
+
+class OAuthFlowMock():
+
+    def step1_get_authorize_url(self):
+        return "http://url"
+
+    def step2_exchange(self, auth_code, http):
+        class OAuthResponseMock():
+            def __init__(self):
+                self.id_token = dict()
+                self.id_token['name'] = "Peter Hadlaw"
+                self.id_token['email'] = "example@example.com"
+        return OAuthResponseMock()
+
 
 
 class GOAuthClientAuthTest(unittest.TestCase):
@@ -53,7 +70,13 @@ class GOAuthClientAuthTest(unittest.TestCase):
 
     def test_auth_oauth_success(self):
         # Accept the auth code, process it, display user information
-        pass
+        with patch('goauth_client.client.establishFlow',
+                   new=MagicMock(return_value=OAuthFlowMock())) as MockClass:
+            rv = self.app.get('/profile?code=asdf')
+            soup = BeautifulSoup(rv.data, 'html.parser')
+            data = MockClass().step2_exchange("asdf", None).id_token
+            assert soup.find(id="info-name").text.endswith(data['name'])
+            assert soup.find(id="info-email").text.endswith(data['email'])
 
 if __name__ == '__main__':
     unittest.main()
