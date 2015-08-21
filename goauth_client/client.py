@@ -12,6 +12,7 @@ app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
 app.config['DEBUG'] = environ.get('DEBUG', False)
+app.secret_key = environ.get('SECRET_APPLICATION_KEY')
 
 
 def establishFlow():
