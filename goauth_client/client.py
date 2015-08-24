@@ -119,4 +119,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=int(environ.get('PORT')))
