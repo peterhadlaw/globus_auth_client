@@ -74,8 +74,8 @@ def profile():
         return render_template("profile.html", profile_data=result.id_token)
 
 
-@app.route("/profile/test")
-def profile_test():
+@app.route("/profile/api_expo")
+def profile_api_expo():
     if 'access' not in session:
         return redirect(url_for('profile'))
     else:
@@ -97,7 +97,7 @@ def profile_test():
                                      indent=2)
         }
 
-        return render_template("profile_test.html", test_results=test_results)
+        return render_template("profile_api_expo.html", test_results=test_results)
 
 
 @app.route("/logout")
