@@ -71,7 +71,7 @@ def profile():
         return render_template("profile.html", profile_data=result.id_token)
 
 
-@pp.route("/logout")
+@app.route("/logout")
 def logout():
     session.pop('access', None)
     return redirect(url_for('hello'))
