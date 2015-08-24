@@ -78,7 +78,9 @@ def profile_test():
     if 'access' not in session:
         return redirect(url_for('profile'))
     else:
-        return "You are logged in"
+        headers = {'Authorization': 'Bearer {}'.format(session['access'])}
+        r = requests.get('https://auth.api.globusauthtest.globuscs.info/token_details', verify=False, headers=headers)
+        return r.text
 
 
 @app.route("/logout")
