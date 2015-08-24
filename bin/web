@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$FLASK_ENV" == "development" ]; then
+if test "$FLASK_ENV" = "development"; then
    python goauth_client/client.py
 else
    gunicorn goauth_client.client:app -w 3
