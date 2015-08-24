@@ -5,6 +5,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+import json
 from httplib2 import Http
 from oauth2client import client as oauth_client
 import requests
@@ -90,8 +91,10 @@ def profile_test():
                                   headers=headers)
 
         test_results = {
-            'token_details': test_token_details,
-            'identities': test_identities
+            'token_details': json.dumps(json.loads(test_token_details.text),
+                                        indent=2),
+            'identities': json.dumps(json.loads(test_identities.text),
+                                     indent=2)
         }
 
         return render_template("profile_test.html", test_results=test_results)
