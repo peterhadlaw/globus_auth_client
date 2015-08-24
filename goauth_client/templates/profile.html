@@ -17,4 +17,9 @@
     <li class="italic mt3" id="info-issuer">Issuer: {{ profile_data.iss }}</li>
   </ul>
 </div>
+
+<div class="mt3">
+  <a class="btn fit btn-primary block center mb1 bg-lime navy" href="{{ url_for('profile_test') }}"">View Authenticated Tests</a>
+  <a class="btn fit btn-outline block center mb1 red" href="{{ url_for('logout') }}"">Log Out</a>
+</div>
 {% endblock %}
