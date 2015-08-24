@@ -1,0 +1,16 @@
+<h3 class="aqua">API Explorer</h3>
+<form action="{{ url_for('profile_api_expo') }}" method="POST">
+  <label for="path">Path</label>
+  <input class="block col-12 mb1 field" id="path" name="path" type="text" value="" />
+
+  <label for="body">Body (optional)</label>
+  <textarea class="block col-12 mb1 field" id="body" cols="" name="body" rows=""></textarea>
+
+  <label for="method">HTTP Method</label>
+  <select class="block col-12 mb1 field" id="method" name="method">
+    <option value="GET">GET</option>
+    <option value="POST">POST</option>
+  </select>
+
+  <button class="btn btn-primary" type="submit">Explore</button>
+</form>
