@@ -2,6 +2,7 @@ from os import environ
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import session
 from flask import url_for
 from httplib2 import Http
 from oauth2client import client as oauth_client
