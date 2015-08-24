@@ -84,13 +84,14 @@ def profile_api_expo():
 
         if request.method == 'POST':
             # API Explorer was used, let's process the request
-            path = request.form['path'] # required
-            body = request.form.get(body, "")
-            method = request.form['method']
-            test_api_explorer = json.dumps(json.loads(requests.request(method, url + path, data=body, verify=False,
-                             headers=headers).text), indent=2)
-        else:
-            test_api_explorer = "No request processed. Please use API explorer."
+            print "hey"
+        #     path = request.form['path'] # required
+        #     body = request.form.get(body, "")
+        #     method = request.form['method']
+        #     test_api_explorer = json.dumps(json.loads(requests.request(method, url + path, data=body, verify=False,
+        #                      headers=headers).text), indent=2)
+        # else:
+        #     test_api_explorer = "No request processed. Please use API explorer."
 
         token_details_path = "/token_details"
         test_token_details = requests.get(url + token_details_path, verify=False,
