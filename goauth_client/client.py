@@ -1,5 +1,6 @@
 from os import environ
 from flask import Flask
+from flask import redirect
 from flask import render_template
 from flask import request
 from flask import session
@@ -69,6 +70,14 @@ def profile():
     else:
         session['access'] = result.access_token
         return render_template("profile.html", profile_data=result.id_token)
+
+
+@app.route("/profile/test")
+def profile_test():
+    if 'access' not in session:
+        return redirect(url_for('profile'))
+    else:
+        return "You are logged in"
 
 
 @app.route("/logout")
