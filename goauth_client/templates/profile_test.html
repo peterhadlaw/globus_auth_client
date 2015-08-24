@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Profile Test{% endblock %}
+{% block heading %}Globus Auth Authenticated Tests{% endblock %}
+{% block content %}
+<h2 class="aqua">Authenticated Tests:</h2>
+<p class="italic gray">(Requests against Globus Auth with Authorization header)</p>
+<h3 class="aqua">/token_details</h3>
+<div class="rounded bg-aqua navy p2">
+  <pre>{{ test_results.token_details.text }}</pre>
+</div>
+<h3 class="aqua">/identities</h3>
+<div class="rounded bg-aqua navy p2">
+  <pre>{{ test_results.identities.text }}</pre>
+</div>
+{% endblock %}

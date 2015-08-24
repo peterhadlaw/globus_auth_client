@@ -89,7 +89,12 @@ def profile_test():
         test_identities = requests.get(url + identities_path, verify=False,
                                   headers=headers)
 
-        return test_token_details.text + test_identities.text
+        test_results = {
+            'token_details': test_token_details,
+            'identities': test_identities
+        }
+
+        return render_template("profile_test.html", test_results=test_results)
 
 
 @app.route("/logout")
