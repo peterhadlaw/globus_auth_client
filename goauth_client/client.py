@@ -67,6 +67,7 @@ def profile():
         return render_template("login_error.html", login_error=str(err),
                                auth_url=auth_url), 401
     else:
+        session['access'] = result.access_token
         return render_template("profile.html", profile_data=result.id_token)
 
 
