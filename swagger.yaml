@@ -1,20 +1,32 @@
 swagger: '2.0'
 info:
-  title: Globus Auth API
-  description: Globus Auth API Explorer
+  title: Globus Auth API Explorer
+  description: Globus Auth API
   version: "0.0.1"
-host: https://auth.api.globusauthtest.globuscs.info
+host: auth.api.globusauthtest.globuscs.info
 schemes:
   - https
-produces:
-  - application/json
+securityDefinitions:
+  authbearer:
+    type: apiKey
+    name: Authorization
+    in: header
 paths:
   /token_details:
     get:
       summary: Token Details
       description: Get the token details
+      security:
+        - authbearer: []
       responses:
-        200:
-          description: The token details
         default:
-          description: Unexpected error
+          description: The response
+  /identities:
+    get:
+      summary: Identities
+      description: Get the identities
+      security:
+        - authbearer: []
+      responses:
+        default:
+          description: The response

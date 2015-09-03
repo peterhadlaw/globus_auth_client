@@ -1,0 +1,53 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Globus Auth API Explorer",
+        "description": "Globus Auth API",
+        "version": "0.0.1"
+    },
+    "host": "auth.api.globusauthtest.globuscs.info",
+    "schemes": [
+        "https"
+    ],
+    "securityDefinitions": {
+        "authbearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/token_details": {
+            "get": {
+                "summary": "Token Details",
+                "description": "Get the token details",
+                "security": [
+                    {
+                        "authbearer": []
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "The response"
+                    }
+                }
+            }
+        },
+        "/identities": {
+            "get": {
+                "summary": "Identities",
+                "description": "Get the identities",
+                "security": [
+                    {
+                        "authbearer": []
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "The response"
+                    }
+                }
+            }
+        }
+    }
+}
