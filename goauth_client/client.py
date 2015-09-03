@@ -76,30 +76,13 @@ def profile():
         return render_template("profile.html", profile_data=result.id_token)
 
 
-@app.route("/profile/api_expo", methods=['GET', 'POST'])
+@app.route("/profile/api_expo")
 def profile_api_expo():
     if 'access' not in session:
         return redirect(url_for('profile'))
     else:
-        url = "https://auth.api.globusauthtest.globuscs.info"
-        headers = {'Authorization': 'Bearer {}'.format(session['access'])}
-
-        token_details_path = "/token_details"
-        test_token_details = requests.get(url + token_details_path, verify=False,
-                                     headers=headers)
-
-        identities_path = "/identities"
-        test_identities = requests.get(url + identities_path, verify=False,
-                                  headers=headers)
-
-        test_results = {
-            'token_details': json.dumps(json.loads(test_token_details.text),
-                                        indent=2),
-            'identities': json.dumps(json.loads(test_identities.text),
-                                     indent=2)
-        }
-
-        return render_template("profile_api_expo.html", test_results=test_results)
+        return render_template("profile_api_expo.html",
+                               bearerToken=session['access'])
 
 
 @app.route("/logout")
