@@ -106,7 +106,8 @@ def profile_api_expo():
                                         indent=2),
             'identities': json.dumps(json.loads(test_identities.text),
                                      indent=2),
-            'test_api_explorer': test_api_explorer
+            # 'test_api_explorer': test_api_explorer
+            'test_api_explorer': "test"
         }
 
         return render_template("profile_api_expo.html", test_results=test_results)
