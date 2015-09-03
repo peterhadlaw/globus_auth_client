@@ -82,17 +82,6 @@ def profile_api_expo():
         url = "https://auth.api.globusauthtest.globuscs.info"
         headers = {'Authorization': 'Bearer {}'.format(session['access'])}
 
-        if request.method == 'POST':
-            # API Explorer was used, let's process the request
-            print "hey"
-        #     path = request.form['path'] # required
-        #     body = request.form.get(body, "")
-        #     method = request.form['method']
-        #     test_api_explorer = json.dumps(json.loads(requests.request(method, url + path, data=body, verify=False,
-        #                      headers=headers).text), indent=2)
-        # else:
-        #     test_api_explorer = "No request processed. Please use API explorer."
-
         token_details_path = "/token_details"
         test_token_details = requests.get(url + token_details_path, verify=False,
                                      headers=headers)
@@ -105,9 +94,7 @@ def profile_api_expo():
             'token_details': json.dumps(json.loads(test_token_details.text),
                                         indent=2),
             'identities': json.dumps(json.loads(test_identities.text),
-                                     indent=2),
-            # 'test_api_explorer': test_api_explorer
-            'test_api_explorer': "test"
+                                     indent=2)
         }
 
         return render_template("profile_api_expo.html", test_results=test_results)
