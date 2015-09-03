@@ -5,6 +5,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from flask.ext.cors import CORS
 import json
 from httplib2 import Http
 from oauth2client import client as oauth_client
@@ -12,6 +13,7 @@ import requests
 
 
 app = Flask(__name__)
+CORS(app)
 app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
