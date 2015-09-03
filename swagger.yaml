@@ -1,0 +1,20 @@
+swagger: '2.0'
+info:
+  title: Globus Auth API
+  description: Globus Auth API Explorer
+  version: "0.0.1"
+host: https://auth.api.globusauthtest.globuscs.info
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /token_details:
+    get:
+      summary: Token Details
+      description: Get the token details
+      responses:
+        200:
+          description: The token details
+        default:
+          description: Unexpected error
