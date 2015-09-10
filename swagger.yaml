@@ -3,7 +3,7 @@ info:
   title: Globus Auth API Explorer
   description: Globus Auth API
   version: "0.0.1"
-host: auth.api.globusauthtest.globuscs.info
+host: auth.api.globusauthsandbox.globuscs.info
 schemes:
   - https
 securityDefinitions:
