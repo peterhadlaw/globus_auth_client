@@ -26,6 +26,16 @@
                         "authbearer": []
                     }
                 ],
+                "parameters": [
+                    {
+                        "name": "fields[token]",
+                        "in": "query",
+                        "allowEmptyValue": false,
+                        "description": "JSON API fields param",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "The response"
