@@ -3,21 +3,12 @@ info:
   title: Globus Auth API Explorer
   description: Globus Auth API
   version: "0.0.1"
-host: auth.api.globusauthsandbox.globuscs.info
-schemes:
-  - https
-securityDefinitions:
-  authbearer:
-    type: apiKey
-    name: Authorization
-    in: header
+host: globus_auth_proxy.pixelrave.com
 paths:
   /token_details:
     get:
       summary: Token Details
       description: Get the token details
-      security:
-        - authbearer: []
       parameters:
         - name: fields[token]
           in: query
@@ -32,8 +23,6 @@ paths:
     get:
       summary: Identities
       description: Get the identities
-      security:
-        - authbearer: []
       responses:
         default:
           description: The response
