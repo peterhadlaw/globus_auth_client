@@ -27,8 +27,8 @@ def establishFlow():
     auth_header = "Bearer " + environ['OAUTHORIZATION_TOKEN']
     with app.app_context():
         redirect_uri = url_for("profile", _external=True, _scheme="https")
-    auth_uri = "https://auth.api.globusauthtest.globuscs.info/authorize"
-    token_uri = "https://auth.api.globusauthtest.globuscs.info/token"
+    auth_uri = environ['SERVICE_URL'] + "/authorize"
+    token_uri = environ['SERVICE_URL'] + "/token"
 
     return oauth_client.OAuth2WebServerFlow(client_id,
                                             scope=scope,
