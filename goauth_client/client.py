@@ -99,7 +99,7 @@ def proxy(url):
     else:
         target = "https://auth.api.beta.globus.org{}".format(url)
         headers = { "Authorization": "Bearer {}".format(session['access']) }
-        r = requests.request(request.method, target, headers=headers, params=request.args)
+        r = requests.get(target, headers=headers, params=request.args)
         return r.content
 
 
