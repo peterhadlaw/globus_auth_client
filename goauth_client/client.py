@@ -91,5 +91,18 @@ def logout():
     return redirect(url_for('hello'))
 
 
+# Proxy routes
+@app.route("/p/<path:url>", methods=['GET', 'POST', 'OPTIONS', 'DELETE'])
+def proxy(url):
+    if 'access' not in session:
+        return redirect(url_for('profile'))
+    else:
+        target = "https://auth.api.beta.globus.org{}".format(url)
+        headers = { "Authorization": "Bearer {}".format(session['access']) }
+        r = requests.request(request.method, target, headers=headers, params=request.args)
+        return r.content
+
+
+
 if __name__ == "__main__":
     app.run(port=int(environ.get('PORT')))
