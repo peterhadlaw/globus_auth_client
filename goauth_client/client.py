@@ -97,9 +97,9 @@ def proxy(url):
     if 'access' not in session:
         return redirect(url_for('profile'))
     else:
-        target = "https://auth.api.beta.globus.org{}".format(url)
+        target = "https://auth.api.beta.globus.org/{}".format(url)
         headers = { "Authorization": "Bearer {}".format(session['access']) }
-        r = requests.get(target, headers=headers, params=request.args)
+        r = requests.request(request.method, target, headers=headers, params=request.args)
         return r.content
 
 
