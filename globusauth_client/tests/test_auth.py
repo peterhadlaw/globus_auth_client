@@ -22,6 +22,7 @@ class OAuthFlowMock():
                 self.id_token = dict()
                 self.id_token['name'] = "Peter Hadlaw"
                 self.id_token['email'] = "example@example.com"
+                self.access_token = "ACCESS_TOKEN"
         return OAuthResponseMock()
 
 
