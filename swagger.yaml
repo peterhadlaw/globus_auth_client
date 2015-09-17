@@ -10,7 +10,7 @@ paths:
       summary: Token Details
       description: Get the token details
       parameters:
-        - name: fields
+        - name: fields[token]
           in: query
           allowEmptyValue: false
           description: JSON API fields param
@@ -32,6 +32,38 @@ paths:
     get:
       summary: Identities
       description: Get the identities
+      parameters:
+        - name: fields[token]
+          in: query
+          allowEmptyValue: false
+          description: JSON API fields param
+          type: array
+          items:
+            type: string
+        - name: include
+          in: query
+          allowEmptyValue: false
+          description: JSON API include param
+          type: array
+          items:
+            type: string
+            collectionFormat: csv
+        - name: identity_names
+          in: query
+          allowEmptyValue: false
+          description: JSON API include param
+          type: array
+          items:
+            type: string
+            collectionFormat: csv
+        - name: identity_ids
+          in: query
+          allowEmptyValue: false
+          description: JSON API include param
+          type: array
+          items:
+            type: string
+            collectionFormat: csv
       responses:
         default:
           description: The response
