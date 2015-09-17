@@ -3,7 +3,7 @@ info:
   title: Globus Auth API Explorer
   description: Globus Auth API
   version: "0.0.1"
-host: globus_auth_demo.pjh.globuscs.info
+host: globus_auth_demo.pjh.globuscs.info/p
 paths:
   /token_details:
     get:
