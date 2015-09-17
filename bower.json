@@ -6,7 +6,7 @@
     "Peter Hadlaw <hadlawp@gmail.com>"
   ],
   "description": "Simple Flask application to demonstrate authenticating with Globus Auth",
-  "main": "goauth_client/client.py",
+  "main": "globusauth_client/client.py",
   "license": "MIT",
   "ignore": [
     "**/.*",

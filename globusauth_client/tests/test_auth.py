@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from goauth_client import client
+from globusauth_client import client
 import unittest
 from mock import patch
 from mock import MagicMock
@@ -26,7 +26,7 @@ class OAuthFlowMock():
 
 
 
-class GOAuthClientAuthTest(unittest.TestCase):
+class GlobusAuthClientAuthTest(unittest.TestCase):
 
     def setUp(self):
         client.app.config['TESTING'] = True
@@ -76,7 +76,7 @@ class GOAuthClientAuthTest(unittest.TestCase):
 
     def test_auth_oauth_success(self):
         # Accept the auth code, process it, display user information
-        with patch('goauth_client.client.establishFlow',
+        with patch('globusauth_client.client.establishFlow',
                    new=MagicMock(return_value=OAuthFlowMock())) as MockClass:
             rv = self.app.get('/profile?code=asdf')
             soup = BeautifulSoup(rv.data, 'html.parser')

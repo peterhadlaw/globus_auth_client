@@ -1,12 +1,12 @@
 from __future__ import print_function
 
-from goauth_client import client
+from globusauth_client import client
 import unittest
 from bs4 import BeautifulSoup
 
 
 
-class GOAuthClientHelloTest(unittest.TestCase):
+class GlobusAuthClientHelloTest(unittest.TestCase):
 
     def setUp(self):
         client.app.config['TESTING'] = True
