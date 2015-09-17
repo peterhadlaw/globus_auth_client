@@ -1,5 +1,6 @@
 from os import environ
 from flask import Flask
+from flask import jsonify
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -7,6 +8,7 @@ from flask import session
 from flask import url_for
 from flask.ext.cors import CORS
 import json
+import re
 from httplib2 import Http
 from oauth2client import client as oauth_client
 import requests
@@ -100,6 +102,9 @@ def proxy(url):
         target = "https://auth.api.beta.globus.org/{}".format(url)
         headers = { "Authorization": "Bearer {}".format(session['access']) }
         r = requests.request(request.method, target, headers=headers, params=request.args)
+
+        if re.search('json', r.headers.get('content-type')):
+            return jsonify(r.json())
         return r.content
 
 
