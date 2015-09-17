@@ -10,12 +10,21 @@ paths:
       summary: Token Details
       description: Get the token details
       parameters:
-        - name: fields[token]
+        - name: fields
           in: query
           allowEmptyValue: false
           description: JSON API fields param
-          type: string
-          format: string
+          type: array
+          items:
+            type: string
+        - name: include
+          in: query
+          allowEmptyValue: false
+          description: JSON API include param
+          type: array
+          items:
+            type: string
+            collectionFormat: csv
       responses:
         default:
           description: The response
