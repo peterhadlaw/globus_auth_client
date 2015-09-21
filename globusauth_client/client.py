@@ -12,6 +12,7 @@ import re
 from httplib2 import Http
 from oauth2client import client as oauth_client
 import requests
+import logging
 
 
 app = Flask(__name__)
@@ -21,6 +22,8 @@ app.config.update(dict(
 ))
 app.config['DEBUG'] = environ.get('DEBUG', False)
 app.secret_key = environ.get('SECRET_APPLICATION_KEY')
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 def establishFlow():
