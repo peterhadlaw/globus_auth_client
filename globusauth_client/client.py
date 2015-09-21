@@ -15,7 +15,7 @@ import requests
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, allow_headers='Content-Type')
 app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
