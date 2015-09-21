@@ -6,7 +6,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-from flask.ext.cors import CORS, cross_origin
+from flask.ext.cors import CORS
 import json
 import re
 from httplib2 import Http
@@ -15,7 +15,7 @@ import requests
 
 
 app = Flask(__name__)
-CORS(app, allow_headers='Content-Type')
+CORS(app)
 app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
@@ -41,7 +41,6 @@ def establishFlow():
 
 
 @app.route("/")
-@cross_origin()
 def hello():
     auth_url = establishFlow().step1_get_authorize_url()
     return render_template("hello.html", auth_url=auth_url)
