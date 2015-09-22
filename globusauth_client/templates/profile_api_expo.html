@@ -33,7 +33,7 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "{{ url_for('static', filename='swagger.json', _external=True) }}";
+        url = "{{ url_for('static', filename='swagger.json', _external=True, _scheme='https') }}";
       }
 
       // Pre load translate...
