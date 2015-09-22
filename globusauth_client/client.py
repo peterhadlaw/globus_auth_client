@@ -16,7 +16,7 @@ import logging
 
 
 app = Flask(__name__)
-CORS(app, send_wildcard=True)
+CORS(app)
 app.config.update(dict(
     PREFERRED_URL_SCHEME = "https"
 ))
