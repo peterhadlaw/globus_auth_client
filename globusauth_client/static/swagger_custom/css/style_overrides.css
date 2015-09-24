@@ -13,3 +13,9 @@
   color: silver;
   overflow: hidden;
 }
+
+#back-to-profile {
+  color: #7FDBFF;
+  text-decoration: none;
+  border-bottom: 1px dotted white;
+}
