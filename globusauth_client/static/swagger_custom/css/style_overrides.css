@@ -1,0 +1,15 @@
+.swagger-section #header {
+  background-color: #3560A0;
+}
+
+.swagger-section #header a#logo {
+  background-image: url('../img/logo.png');
+}
+
+#swagger-attribution {
+  display: block;
+  text-align: center;
+  font-size: smaller;
+  color: silver;
+  overflow: hidden;
+}
