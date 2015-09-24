@@ -7,7 +7,6 @@ from flask import request
 from flask import session
 from flask import url_for
 from flask.ext.cors import CORS
-import json
 import re
 from httplib2 import Http
 from oauth2client import client as oauth_client
