@@ -69,3 +69,30 @@ paths:
       responses:
         default:
           description: The response
+  /identities/{primary_identity}/relationship/linked_identities:
+    delete:
+      summary: Identities
+      description: Get the identities
+      parameters:
+        - name: primary_identity
+          in: path
+          required: true
+          description: Primary Linked Identity ID
+          type: string
+      responses:
+        default:
+          description: The response
+definitions:
+  Relationship:
+    type: object
+    properties:
+      type: array
+      items: "$ref/definitions/Identity"
+  Identity:
+    type: object
+    properties:
+      type:
+        type: string
+        default: "indentity"
+      id:
+        type: string
