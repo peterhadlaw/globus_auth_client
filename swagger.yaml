@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: Globus Auth API Explorer
-  description: Globus Auth API
+  description: "[Notice: Currently this API Explorer proxies requests (via '/p') to 'auth.api.beta.globus.org', adding the Authorization header in the process]"
   version: "0.0.1"
 host: globus-auth-demo.beta.globus.org/p
 schemes:
