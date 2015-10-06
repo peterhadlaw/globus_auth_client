@@ -44,12 +44,17 @@ def establishFlow():
 
 @app.route("/")
 def hello():
+    session.pop('token', None)
+    session.pop('access', None)
     auth_url = establishFlow().step1_get_authorize_url()
     return render_template("hello.html", auth_url=auth_url)
 
 
 @app.route("/profile")
 def profile():
+    if 'token' in session:
+        return render_template("profile.html", profile_data=session['token'])
+
     flow = establishFlow()
     auth_url = flow.step1_get_authorize_url()
     if "error" not in request.args and "code" not in request.args:
@@ -76,6 +81,7 @@ def profile():
         return render_template("login_error.html", login_error=str(err),
                                auth_url=auth_url), 401
     else:
+        session['token'] = result.id_token
         session['access'] = result.access_token
         return render_template("profile.html", profile_data=result.id_token)
 
