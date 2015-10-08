@@ -3,3 +3,5 @@ install:
   - pip install --user -r requirements.txt
   - pip install --user -r test-requirements.txt
 script: nosetests
+after_success:
+  - eval "$(ssh-agent -s)"  # start the ssh agent
