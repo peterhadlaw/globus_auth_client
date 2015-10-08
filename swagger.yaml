@@ -79,6 +79,12 @@ paths:
           required: true
           description: Primary Linked Identity ID
           type: string
+        - name: body
+          in: body
+          required: true
+          description: Identities to unlink
+          schema:
+            $ref: '#/definitions/Relationship'
       responses:
         default:
           description: The response
@@ -86,8 +92,11 @@ definitions:
   Relationship:
     type: object
     properties:
-      type: array
-      items: "$ref/definitions/Identity"
+      data:
+        type: array
+        minItems: 2
+        items: 
+          $ref: '#/definitions/Identity'
   Identity:
     type: object
     properties:
@@ -96,3 +105,4 @@ definitions:
         default: "indentity"
       id:
         type: string
+        default: "<to_unlink1>"

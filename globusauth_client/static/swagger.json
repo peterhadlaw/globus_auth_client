@@ -111,6 +111,15 @@
                         "required": true,
                         "description": "Primary Linked Identity ID",
                         "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "description": "Identities to unlink",
+                        "schema": {
+                            "$ref": "#/definitions/Relationship"
+                        }
                     }
                 ],
                 "responses": {
@@ -125,8 +134,13 @@
         "Relationship": {
             "type": "object",
             "properties": {
-                "type": "array",
-                "items": "$ref/definitions/Identity"
+                "data": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                        "$ref": "#/definitions/Identity"
+                    }
+                }
             }
         },
         "Identity": {
@@ -137,7 +151,8 @@
                     "default": "indentity"
                 },
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "<to_unlink1>"
                 }
             }
         }
