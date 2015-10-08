@@ -25,6 +25,16 @@ app.secret_key = environ.get('SECRET_APPLICATION_KEY')
 logging.basicConfig(level=logging.DEBUG)
 
 
+# Acquire bearer token at app start up (for now, until refresh tokens)
+token_r = requests.post('https://auth.api.beta.globus.org/token',
+                        params={
+                            "grant_type": "client_credentials",
+                            "scope": environ["CREDENTIAL_SCOPE_ID"]
+                        },
+                        auth=(environ['OAUTH_CLIENT_ID'], environ['OAUTH_CLIENT_SECRET']))
+
+environ['OAUTHORIZATION_TOKEN'] = token_r.json()['access_token']
+
 def establishFlow():
     scope = environ['SCOPE_ID']
     client_id = environ['OAUTH_CLIENT_ID']
