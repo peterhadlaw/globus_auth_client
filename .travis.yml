@@ -9,7 +9,7 @@ after_success:
   - eval "$(ssh-agent -s)"  # start the ssh agent
   - echo $DEPLOY_KEY > .travis_deploy_key.pem
   - chmod 600 .travis_deploy_key.pem
-  - ssh-add .travis_deploy_key.pem
+  - ./.travis_setup_key.sh
   - ssh-add -L
   - git remote add deploy dokku@${GLOBUS_DOKKU_IP}:auth_demo_prod
   - git push deploy
