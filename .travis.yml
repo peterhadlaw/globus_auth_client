@@ -5,6 +5,7 @@ install:
 script: nosetests
 sudo: false
 after_success:
+  - which expect
   - echo $DEPLOY_HOST_PUB >> ~/.ssh/known_hosts
   - eval "$(ssh-agent -s)"  # start the ssh agent
   - echo $DEPLOY_KEY > .travis_deploy_key.pem
