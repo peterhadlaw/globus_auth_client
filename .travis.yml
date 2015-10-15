@@ -10,6 +10,7 @@ script: nosetests
 sudo: false
 after_success:
   - echo $DEPLOY_HOST_PUB >> ~/.ssh/known_hosts
+  - cat ~/.ssh/known_hosts
   - eval "$(ssh-agent -s)"  # start the ssh agent
   - echo $DEPLOY_KEY > .travis_deploy_key.pem
   - chmod 600 .travis_deploy_key.pem
