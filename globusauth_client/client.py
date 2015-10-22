@@ -14,6 +14,9 @@ import requests
 import logging
 
 
+SERVICE_URL = environ.get('SERVICE_URL', 'https://auth.api.beta.globus.org')
+
+
 app = Flask(__name__)
 CORS(app)
 app.config.update(dict(
@@ -26,7 +29,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 # Acquire bearer token at app start up (for now, until refresh tokens)
-token_r = requests.post('https://auth.api.beta.globus.org/token',
+token_r = requests.post(SERVICE_URL + '/token',
                         params={
                             "grant_type": "client_credentials",
                             "scope": environ["CREDENTIAL_SCOPE_ID"]
@@ -41,8 +44,8 @@ def establishFlow():
     auth_header = "Bearer " + environ['OAUTHORIZATION_TOKEN']
     with app.app_context():
         redirect_uri = url_for("profile", _external=True, _scheme="https")
-    auth_uri = "https://auth.api.beta.globus.org/authorize"
-    token_uri = "https://auth.api.beta.globus.org/token"
+    auth_uri = SERVICE_URL + "/authorize"
+    token_uri = SERVICE_URL + "/token"
 
     return oauth_client.OAuth2WebServerFlow(client_id,
                                             scope=scope,
@@ -117,7 +120,7 @@ def proxy(url):
     if 'access' not in session:
         return redirect(url_for('profile'))
     else:
-        target = "https://auth.api.beta.globus.org/{}".format(url)
+        target = SERVICE_URL + "/{}".format(url)
         headers = { "Authorization": "Bearer {}".format(session['access']) }
         r = requests.request(request.method, target, headers=headers, params=request.args)
 
