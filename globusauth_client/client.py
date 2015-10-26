@@ -36,6 +36,7 @@ token_r = requests.post(SERVICE_URL + '/token',
                         },
                         auth=(environ['OAUTH_CLIENT_ID'], environ['OAUTH_CLIENT_SECRET']))
 
+print token_r.text
 environ['OAUTHORIZATION_TOKEN'] = token_r.json()['access_token']
 
 def establishFlow():
