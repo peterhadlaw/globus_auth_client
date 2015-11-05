@@ -48,6 +48,60 @@ ssh -t dokku@AUTH_DEMO_BOX_IP <command>
         ```
 
 
+##Setup Service
+
+1. Start with a fresh, organic, free range Ubuntu 14.04 x64 machine.
+
+2. Setup the Dokku platform
+
+     - SSH (as "ubuntu" for example on AWS) and run the following:
+
+       ```
+       wget https://raw.githubusercontent.com/progrium/dokku/v0.4.3/bootstrap.sh
+       sudo DOKKU_TAG=v0.4.3 bash bootstrap.sh
+       ```
+
+3. Add your SSH key as a Dokku deploy key
+
+   ```
+    cat ~/.ssh/id_rsa.pub | ssh <root_user>@AUTH_DEMO_BOX_IP "sudo sshcommand acl-add dokku globus"
+    ```
+
+4. Create app on the platform and set configuration variables
+
+   ```
+   ssh -t dokku@AUTH_DEMO_BOX_IP apps:create auth_demo_prod
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod 
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod CREDENTIAL_SCOP_ID="auth:login"
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod DEBUG="False"
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod FLASK_ENV="production"
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod OAUTH_CLIENT_ID="<OAUTH_CLIENT_ID>"
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod OAUTH_CLIENT_SECRET="<OAUTH_CLIENT_SECRET>"
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod SCOPE_ID="auth:view_identities"
+   ssh -t dokku@AUTH_DEMO_BOX_IP config:set auth_demo_prod SECRET_APPLICATION_KEY="<secure_random_key>"
+   ```
+
+5. Deploy this app to the Dokku platform
+
+   From within a cloned copy of this git repo, run the following:
+
+   ```
+   git remote add dokku dokku@AUTH_DEMO_BOX_IP:auth_demo_prod
+   git push dokku master
+   ```
+
+   There will be `remote:` output, towards the end of this output, the active url will show.
+   It will be along the lines of: `http://auth_demo_prod.AUTH_DEMO_BOX_DNS`
+
+6. Adjust your DNS accordingly to point to the Dokku box and update the app url:
+
+   ```
+   ssh -t dokku@AUTH_DEMO_BOX_IP domains:add auth_demo_prod http://production.url
+   ```
+
+7. Setup the SSL layer
+
+
 ##License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
