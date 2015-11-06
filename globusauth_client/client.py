@@ -12,6 +12,7 @@ from httplib2 import Http
 from oauth2client import client as oauth_client
 import requests
 import logging
+from base64 import urlsafe_b64encode
 
 
 SERVICE_URL = environ.get('SERVICE_URL', 'https://auth.api.beta.globus.org')
@@ -28,20 +29,12 @@ app.secret_key = environ.get('SECRET_APPLICATION_KEY')
 logging.basicConfig(level=logging.DEBUG)
 
 
-# Acquire bearer token at app start up (for now, until refresh tokens)
-token_r = requests.post(SERVICE_URL + '/token',
-                        params={
-                            "grant_type": "client_credentials",
-                            "scope": environ["CREDENTIAL_SCOPE_ID"]
-                        },
-                        auth=(environ['OAUTH_CLIENT_ID'], environ['OAUTH_CLIENT_SECRET']))
-
-environ['OAUTHORIZATION_TOKEN'] = token_r.json()['access_token']
-
 def establishFlow():
     scope = environ['SCOPE_ID']
     client_id = environ['OAUTH_CLIENT_ID']
-    auth_header = "Bearer " + environ['OAUTHORIZATION_TOKEN']
+    basic_auth_str = urlsafe_b64encode("{}:{}".format(environ['OAUTH_CLIENT_ID'],
+                                                      environ['OAUTH_CLIENT_SECRET']))
+    auth_header = "Basic " + basic_auth_str
     with app.app_context():
         redirect_uri = url_for("profile", _external=True, _scheme="https")
     auth_uri = SERVICE_URL + "/authorize"
