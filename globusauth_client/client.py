@@ -90,10 +90,11 @@ def profile():
     else:
         session['token'] = result.id_token
         session['access'] = result.access_token
+        print result.token_response
         return render_template("profile.html", profile_data=result.id_token,
                                access_token=result.access_token,
-                               actok_resource_server=result.resource_server,
-                               other_tokens=result.other_tokens)
+                               actok_resource_server="",
+                               other_tokens="")
 
 
 @app.route("/profile/api_expo")
