@@ -60,7 +60,9 @@ def hello():
 def profile():
     if 'token' in session:
         return render_template("profile.html", profile_data=session['token'],
-                               access_token=session['access'])
+                               access_token=session['access'],
+                               actok_resource_server="",
+                               other_tokens="Please re-login for other tokens")
 
     flow = establishFlow()
     auth_url = flow.step1_get_authorize_url()
@@ -90,11 +92,11 @@ def profile():
     else:
         session['token'] = result.id_token
         session['access'] = result.access_token
-        print result.token_response
+        session['token_response'] = result.token_response
         return render_template("profile.html", profile_data=result.id_token,
                                access_token=result.access_token,
-                               actok_resource_server="",
-                               other_tokens="")
+                               actok_resource_server=result.token_response['resource_server'],
+                               other_tokens=result.token_response['other_tokens'])
 
 
 @app.route("/profile/api_expo")

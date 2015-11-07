@@ -16,7 +16,7 @@
     <li id="info-provider_id"><span class="bold">Provider ID: </span>{{ profile_data.provider }}</li>
     <li class="italic mt3" id="info-issuer">Issuer: {{ profile_data.iss }}</li>
     <li class="italic mt2" id="info-access_token">Access Token ({{ actok_resource_server }}): <div style="font-size: smaller">{{ access_token }}</div></li>
-    <li class="italic mt2" id="info-other_tokens">Other Tokens: <div style="font-size: smaller">{{ other_tokens }}</div></li>
+    <li class="italic mt2" id="info-other_tokens">Other Tokens: <div style="font-size: smaller; overflow: scroll">{{ other_tokens }}</div></li>
   </ul>
 </div>
 
