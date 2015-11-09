@@ -94,9 +94,6 @@ def profile():
         session['access'] = result.access_token
         session['resource_server'] = result.token_response['resource_server']
         session['other_tokens'] = result.token_response['other_tokens']
-        print result.token_response
-        print "---"
-        print result.token_response['other_tokens']
         return render_template("profile.html", profile_data=result.id_token,
                                access_token=result.access_token,
                                resource_server=result.token_response['resource_server'],
