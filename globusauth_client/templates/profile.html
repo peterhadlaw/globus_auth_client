@@ -15,10 +15,10 @@
     <li id="info-provider"><span class="bold">Provider: </span>{{ profile_data.provider_name }}</li>
     <li id="info-provider_id"><span class="bold">Provider ID: </span>{{ profile_data.provider }}</li>
     <li class="italic mt3" id="info-issuer">Issuer: {{ profile_data.iss }}</li>
-    <li class="italic mt2" id="info-access_token">Access Token ({{ resource_server }}): <div style="font-size: smaller; overflow: scroll">{{ access_token }}</div></li>
+    <li class="italic mt2" id="info-access_token">Access Token ({{ resource_server }}): <div style="font-size: smaller; overflow: auto">{{ access_token }}</div></li>
     <ul class="list-reset mb0">
       {% for tok in other_tokens %}
-        <li class="italic mt2" id="info-access_token">({{ tok['resource_server'] }}): <div style="font-size: smaller; overflow: scroll">{{ tok['access_token'] }}</div></li>
+        <li class="italic mt2" id="info-access_token">({{ tok['resource_server'] }}): <div style="font-size: smaller; overflow: auto">{{ tok['access_token'] }}</div></li>
       {% endfor %}
     </ul>
   </ul>
