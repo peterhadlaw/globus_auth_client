@@ -60,7 +60,9 @@ def hello():
 def profile():
     if 'token' in session:
         return render_template("profile.html", profile_data=session['token'],
-                               access_token=session['access'])
+                               access_token=session['access'],
+                               resource_server=session['resource_server'],
+                               other_tokens=session['other_tokens'])
 
     flow = establishFlow()
     auth_url = flow.step1_get_authorize_url()
@@ -90,8 +92,12 @@ def profile():
     else:
         session['token'] = result.id_token
         session['access'] = result.access_token
+        session['resource_server'] = result.token_response['resource_server']
+        session['other_tokens'] = result.token_response['other_tokens']
         return render_template("profile.html", profile_data=result.id_token,
-                               access_token=result.access_token)
+                               access_token=result.access_token,
+                               resource_server=result.token_response['resource_server'],
+                               other_tokens=result.token_response['other_tokens'])
 
 
 @app.route("/profile/api_expo")
