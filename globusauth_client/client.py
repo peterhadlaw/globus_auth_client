@@ -112,6 +112,9 @@ def profile_api_expo():
 @app.route("/logout")
 def logout():
     session.pop('access', None)
+    session.pop('token', None)
+    session.pop('resource_server', None)
+    session.pop('other_tokens', None)
     return redirect(url_for('hello'))
 
 
