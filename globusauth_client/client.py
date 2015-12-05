@@ -111,6 +111,9 @@ def profile_api_expo():
 
 @app.route("/logout")
 def logout():
+    if 'access' in session:
+        headers = { "Authorization": "Bearer {}".format(session['access']) }
+        r = requests.delete(SERVICE_URL + "/token_details", headers=headers);
     session.pop('access', None)
     session.pop('token', None)
     session.pop('resource_server', None)
