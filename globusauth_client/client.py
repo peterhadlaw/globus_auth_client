@@ -118,7 +118,11 @@ def logout():
     session.pop('token', None)
     session.pop('resource_server', None)
     session.pop('other_tokens', None)
-    return redirect(url_for('hello'))
+    
+
+    # Call the actual logout resource on Globus Auth's end
+    target = SERVICE_URL + "/logout?client_id={}".format(environ['OAUTH_CLIENT_ID'])
+    return redirect(target)
 
 
 # Proxy routes
