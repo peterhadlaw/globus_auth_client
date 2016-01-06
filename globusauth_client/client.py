@@ -113,7 +113,7 @@ def profile_api_expo():
 def logout():
     if 'access' in session:
         headers = { "Authorization": "Bearer {}".format(session['access']) }
-        r = requests.delete(SERVICE_URL + "/token_details", headers=headers);
+        r = requests.delete(SERVICE_URL + "/token_details", headers=headers, verify=False);
     session.pop('access', None)
     session.pop('token', None)
     session.pop('resource_server', None)
@@ -133,7 +133,7 @@ def proxy(url):
     else:
         target = SERVICE_URL + "/{}".format(url)
         headers = { "Authorization": "Bearer {}".format(session['access']) }
-        r = requests.request(request.method, target, headers=headers, params=request.args)
+        r = requests.request(request.method, target, headers=headers, params=request.args, verify=False)
 
         if re.search('json', r.headers.get('content-type')):
             return jsonify(r.json())
